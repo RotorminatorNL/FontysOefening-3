@@ -1,0 +1,93 @@
+﻿<Window x:Class="Circustrein.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Circustrein"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="900" Width="1200">
+    <Grid Background="#0D47A1">
+        <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="280" Width="500" VerticalAlignment="Top" Margin="0,20,0,0">
+            <StackPanel>
+                <Label Content="Vul het aantal te vervoeren dieren in" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
+                <Rectangle Fill="Black" Height="2" Width="500"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <StackPanel Width="120">
+                        <Label Content="Planteter" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <Label Content="Klein"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Middelgroot"   FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Groot"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                    </StackPanel>
+                    <StackPanel Width="70" x:Name="spPlantEaters">
+                        <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="TxtAmount_Small_PlantEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TxtAmount_Medium_PlantEater" Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TxtAmount_Big_PlantEater"    Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                    </StackPanel>
+                    <Rectangle Width="30"/>
+                    <StackPanel Width="120">
+                        <Label Content="Vleeseter" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <Label Content="Klein"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Middelgroot"   FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Groot"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                    </StackPanel>
+                    <StackPanel Width="70" x:Name="spMeatEaters">
+                        <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="TxtAmount_Small_MeatEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TxtAmount_Medium_MeatEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TxtAmount_Big_MeatEater"     Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+        <DockPanel Margin="0,0,0,180" HorizontalAlignment="Center">
+            <Button x:Name="BtnReset" Content="Reset" FontSize="24" Height="50" Width="180" Margin="0,0,10,0" Click="BtnReset_Click"/>
+            <Button x:Name="BtnSeeResult" Content="Geef resultaat" FontSize="24" Height="50" Width="180" Margin="10,0,0,0" Click="BtnSeeResult_Click"/>
+        </DockPanel>
+        <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="460" Width="550" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,20">
+            <StackPanel>
+                <Label Content="Zie resultaat" FontSize="26" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
+                <Rectangle Fill="Black" Height="2" Width="550"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <StackPanel>
+                        <Label Content="Aantal dieren" FontSize="20"/>
+                        <Label x:Name="LblAmountAnimals" Content="0" FontSize="20"/>
+                    </StackPanel>
+                    <Rectangle Width="30"/>
+                    <StackPanel>
+                        <Label Content="Aantal wagons" FontSize="20"/>
+                        <Label x:Name="LblAmountWagons" Content="0" FontSize="20"/>
+                    </StackPanel>
+                    <Rectangle Width="30"/>
+                    <StackPanel>
+                        <Label Content="Totale ruimte gebruik" FontSize="20"/>
+                        <Label x:Name="LblTotalSpaceUsage" Content="0" FontSize="20"/>
+                    </StackPanel>
+                </DockPanel>
+                <Label Content="De wagons" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
+                <ListView  Background="#FF9100" x:Name="LvWagons" FontSize="18" Height="260" SelectionChanged="LvWagons_SelectionChanged"></ListView>
+            </StackPanel>
+        </Border>
+        <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="460" Width="550" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,20">
+            <StackPanel>
+                <Label Content="Info wagon" FontSize="26" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
+                <Rectangle Fill="Black" Height="2" Width="550"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <StackPanel>
+                        <Label Content="Aantal dieren in wagon" FontSize="20"/>
+                        <Label x:Name="LblAmountAnimalsInWagon" Content="0" FontSize="20"/>
+                    </StackPanel>
+                    <Rectangle Width="30"/>
+                    <StackPanel>
+                        <Label Content="Ruimte gebruikt" FontSize="20"/>
+                        <Label x:Name="LblUsedSpace" Content="0" FontSize="20"/>
+                    </StackPanel>
+                </DockPanel>
+                <Label Content="De dieren" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
+                <ListView Background="#FF9100" x:Name="LvAnimalsInWagon" FontSize="18" Height="260"></ListView>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
