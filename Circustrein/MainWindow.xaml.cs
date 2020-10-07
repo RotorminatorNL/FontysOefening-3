@@ -1,5 +1,4 @@
-﻿using Circustrein.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +13,12 @@ namespace Circustrein
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
+        {
+            CircusDieren circusDieren = new CircusDieren();
+            circusDieren.VerzamelDieren(spPlantEters, spVleesEters);
         }
     }
 }
