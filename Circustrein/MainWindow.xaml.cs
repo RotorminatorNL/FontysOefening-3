@@ -33,25 +33,10 @@ namespace Circustrein
                 if (tbx.Text != "0")
                 {
                     string[] arrTbxTag = tbx.Tag.ToString().Split('_');
-                    Sizes size;
+                    Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine : 
+                                 arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
                     Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
-                    int weight;
-
-                    if (arrTbxTag[0] == Sizes.kleine.ToString())
-                    {
-                        size = Sizes.kleine;
-                        weight = Convert.ToInt32(Sizes.kleine);
-                    }
-                    else if (arrTbxTag[0] == Sizes.middelgrote.ToString())
-                    {
-                        size = Sizes.middelgrote;
-                        weight = Convert.ToInt32(Sizes.middelgrote);
-                    }
-                    else
-                    {
-                        size = Sizes.grote;
-                        weight = Convert.ToInt32(Sizes.grote);
-                    }
+                    int weight = Convert.ToInt32(size);
 
                     for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
                     {
@@ -69,19 +54,15 @@ namespace Circustrein
         private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
             if (depObj != null)
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
             {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
+                DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                if (child != null && child is T t)
+                    yield return t;
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
+                foreach (T childOfChild in FindVisualChildren<T>(child))
+                {
+                    yield return childOfChild;
                 }
             }
         }
