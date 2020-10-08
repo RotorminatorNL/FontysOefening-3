@@ -18,5 +18,10 @@ namespace Circustrein
             Type = type;
             Weight = weight;
         }
+
+        public override string ToString()
+        {
+            return $"{Size} {Type}";
+        }
     }
 }

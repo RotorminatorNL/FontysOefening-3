@@ -1,13 +1,17 @@
-﻿public enum Types
+﻿
+namespace Circustrein
 {
-    vleeseter,
-    planteter
-}
+    public enum Types
+    {
+        vleeseter,
+        planteter
+    }
 
-public enum Sizes
-{
-    kleine,
-    middelgrote,
-    grote
+    public enum Sizes
+    {
+        kleine = 1,
+        middelgrote = 3,
+        grote = 5
+    }
 }
 

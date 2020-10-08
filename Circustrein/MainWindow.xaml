@@ -13,7 +13,7 @@
             <StackPanel>
                 <Label Content="Vul het aantal te vervoeren dieren in" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
                 <Rectangle Fill="Black" Height="2" Width="500"/>
-                <DockPanel HorizontalAlignment="Center">
+                <DockPanel HorizontalAlignment="Center" Name="dpAnimalInput">
                     <StackPanel Width="120">
                         <Label Content="Planteter" FontSize="20" HorizontalContentAlignment="Center"/>
                         <Label Content="Klein"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
@@ -22,9 +22,9 @@
                     </StackPanel>
                     <StackPanel Width="70">
                         <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
-                        <TextBox x:Name="TbxSmallPlantEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <TextBox x:Name="TbxMediumPlantEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <TextBox x:Name="TbxBigPlantEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TbxSmallPlantEater"    Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="kleine_planteter"/>
+                        <TextBox x:Name="TbxMediumPlantEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="middelgrote_planteter"/>
+                        <TextBox x:Name="TbxBigPlantEater"      Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="grote_planteter"/>
                     </StackPanel>
                     <Rectangle Width="30"/>
                     <StackPanel Width="120">
@@ -35,15 +35,15 @@
                     </StackPanel>
                     <StackPanel Width="70">
                         <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
-                        <TextBox x:Name="TbxSmallMeatEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <TextBox x:Name="TbxMediumMeatEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <TextBox x:Name="TbxBigMeatEater"     Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <TextBox x:Name="TbxSmallMeatEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="kleine_vleeseter"/>
+                        <TextBox x:Name="TbxMediumMeatEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="middelgrote_vleeseter"/>
+                        <TextBox x:Name="TbxBigMeatEater"     Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="grote_vleeseter"/>
                     </StackPanel>
                 </DockPanel>
             </StackPanel>
         </Border>
         <DockPanel Margin="0,0,0,180" HorizontalAlignment="Center">
-            <Button x:Name="BtnReset" Content="Reset" FontSize="24" Height="50" Width="180" Margin="0,0,10,0" Click="BtnReset_Click"/>
+            <Button x:Name="BtnReset" Content="Reset" FontSize="24" Height="50" Width="180" Margin="0,0,10,0"/>
             <Button x:Name="BtnGeefResultaat" Content="Geef resultaat" FontSize="24" Height="50" Width="180" Margin="10,0,0,0" Click="BtnSeeResult_Click"/>
         </DockPanel>
         <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="460" Width="550" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,20">
@@ -67,7 +67,7 @@
                     </StackPanel>
                 </DockPanel>
                 <Label Content="De wagons" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" VerticalAlignment="Top"/>
-                <ListView  Background="#FF9100" x:Name="LvWagons" FontSize="18" Height="260" SelectionChanged="LvWagons_SelectionChanged"></ListView>
+                <ListView  Background="#FF9100" x:Name="LvWagons" FontSize="18" Height="260"></ListView>
             </StackPanel>
         </Border>
         <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="460" Width="550" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,20">
