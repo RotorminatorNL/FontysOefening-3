@@ -55,9 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CircusDieren.cs" />
-    <Compile Include="Dier.cs" />
-    <Compile Include="Trein.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Animal.cs" />
+    <Compile Include="Train.cs" />
     <Compile Include="Wagon.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

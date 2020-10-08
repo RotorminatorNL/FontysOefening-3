@@ -8,24 +8,20 @@ namespace Circustrein
 {
     public class Wagon
     {
-        public List<Dier> DierenInwagon;
-        private int MaxRuimte = 10;
-        private int GebruikteRuimte;
+        private List<Animal> animalsInWagon;
+        private readonly int space;
+        private int usedSpace;
 
         public Wagon()
         {
-            DierenInwagon = new List<Dier>();
-            GebruikteRuimte = 0;
+            animalsInWagon = new List<Animal>();
+            space = 10;
+            usedSpace = 0;
         }
 
-        public void VoegDierenToe(List<Dier> dieren)
+        public override string ToString()
         {
-
-        }
-
-        public string RuimteGebruik()
-        {
-            return $"{GebruikteRuimte} / {MaxRuimte}";
+            return $"{usedSpace} / {space}";
         }
     }
 }

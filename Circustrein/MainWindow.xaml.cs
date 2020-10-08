@@ -10,15 +10,17 @@ namespace Circustrein
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Train train;
+
         public MainWindow()
         {
             InitializeComponent();
+            train = new Train();
         }
 
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
-            CircusDieren circusDieren = new CircusDieren();
-            circusDieren.VerzamelDieren(spPlantEters, spVleesEters);
+            
         }
     }
 }
