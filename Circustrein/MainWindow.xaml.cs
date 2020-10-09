@@ -11,6 +11,7 @@ namespace Circustrein
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Train train;
         public MainWindow()
         {
             InitializeComponent();
@@ -19,7 +20,8 @@ namespace Circustrein
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
             List<Animal> circusAnimals = GatherAnimals();
-            ShowResults(new Train(circusAnimals.Count).MakeTrainReady(circusAnimals));
+            train = new Train(circusAnimals.Count).MakeTrainReady(circusAnimals);
+            ShowResults();
         }
 
         private List<Animal> GatherAnimals()
@@ -63,21 +65,23 @@ namespace Circustrein
             }
         }
 
-        private void ShowResults(Train train)
+        private void ShowResults()
         {
             LblAmountAnimals.Content = train.AnimalCount;
             LblAmountWagons.Content = train.GetTrainWagons().Count;
             LblTotalSpaceUsage.Content = train.ToString();
-
-            foreach (Wagon wagon in train.GetTrainWagons())
-            {
-                LvWagons.Items.Add(new ListViewItem { Content = $"Wagon {wagon.wagonID}" });
-            }
+            LvWagons.ItemsSource = train.GetTrainWagons();
         }
 
         private void LvWagons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Wagon selectedWagon = (Wagon)LvWagons.SelectedItem;
+            if (selectedWagon != null)
+            {
+                LblAmountAnimalsInWagon.Content = selectedWagon.AmountAnimals;
+                LblUsedSpace.Content = selectedWagon.Efficiency;
+                LvAnimalsInWagon.ItemsSource = selectedWagon.GetAnimalsInWagon();
+            }
         }
     }
 }
