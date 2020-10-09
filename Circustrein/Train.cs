@@ -46,9 +46,13 @@ namespace Circustrein
                     Animal animal_2 = circusAnimals[a_2];
                     if (wagon.UsedSpace + animal_2.Weight <= wagon.Space)
                     {
-                        if (animal_1.Type == Types.vleeseter &&
-                            animal_2.Type != Types.vleeseter &&
-                            animal_2.Weight > animal_1.Weight)
+                        if (animal_1.Type == Types.vleeseter && animal_1.Size == Sizes.kleine && animal_2.Type != Types.vleeseter && animal_2.Weight == Convert.ToInt32(Sizes.middelgrote))
+                        {
+                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
+                            totalUsedSpace += animal_2.Weight;
+                            a_2 = -1;
+                        }
+                        else if (animal_1.Type == Types.vleeseter && animal_1.Size != Sizes.kleine && animal_2.Type != Types.vleeseter && animal_2.Weight > animal_1.Weight)
                         {
                             wagon.AddAnimalToWagon(circusAnimals, animal_2);
                             totalUsedSpace += animal_2.Weight;

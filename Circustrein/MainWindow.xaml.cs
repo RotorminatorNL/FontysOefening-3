@@ -35,8 +35,15 @@ namespace Circustrein
                 Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
                 int weight = Convert.ToInt32(size);
 
-                for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
-                    animals.Add(new Animal(size, type, weight));
+                try
+                {
+                    for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
+                        animals.Add(new Animal(size, type, weight));
+                }
+                catch (Exception)
+                {
+                    // do nothing
+                }
             }
             return animals;
         }
