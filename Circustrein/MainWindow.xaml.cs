@@ -33,15 +33,13 @@ namespace Circustrein
                 if (tbx.Text != "0")
                 {
                     string[] arrTbxTag = tbx.Tag.ToString().Split('_');
-                    Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine : 
-                                 arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
+                    Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine :
+                                    arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
                     Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
                     int weight = Convert.ToInt32(size);
 
                     for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
-                    {
                         circusAnimals.Add(new Animal(size, type, weight));
-                    }
                 }
             }
         }
@@ -54,15 +52,15 @@ namespace Circustrein
         private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
             if (depObj != null)
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
             {
-                DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                if (child != null && child is T t)
-                    yield return t;
-
-                foreach (T childOfChild in FindVisualChildren<T>(child))
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
-                    yield return childOfChild;
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T t)
+                        yield return t;
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                        yield return childOfChild;
                 }
             }
         }
