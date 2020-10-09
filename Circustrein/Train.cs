@@ -32,46 +32,47 @@ namespace Circustrein
 
             Wagon wagon;
 
-            for (int a_1 = 0; a_1 < circusAnimals.Count; a_1++)
+            for (int i = 0; i < circusAnimals.Count; i++)
             {
                 wagon = new Wagon(trainWagons.Count + 1);
                 totalSpace += wagon.Space;
 
-                Animal animal_1 = circusAnimals[a_1];
-                wagon.AddAnimalToWagon(circusAnimals, animal_1);
-                totalUsedSpace += animal_1.Weight;
+                Animal primaryAnimal = circusAnimals[i];
+                wagon.AddAnimalToWagon(circusAnimals, primaryAnimal);
+                totalUsedSpace += primaryAnimal.Weight;
 
-                for (int a_2 = 0; a_2 < circusAnimals.Count; a_2++)
+                for (int j = 0; j < circusAnimals.Count; j++)
                 {
-                    Animal animal_2 = circusAnimals[a_2];
-                    if (wagon.UsedSpace + animal_2.Weight <= wagon.Space)
+                    Animal secondaryAnimal = circusAnimals[j];
+                    if (wagon.UsedSpace + secondaryAnimal.Weight <= wagon.Space)
                     {
-                        if (animal_1.Type == Types.vleeseter && animal_1.Size == Sizes.kleine && animal_2.Type != Types.vleeseter && animal_2.Weight == Convert.ToInt32(Sizes.middelgrote))
+                        if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size == Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight == Convert.ToInt32(Sizes.middelgrote))
                         {
-                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
-                            totalUsedSpace += animal_2.Weight;
-                            a_2 = -1;
+                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
                         }
-                        else if (animal_1.Type == Types.vleeseter && animal_1.Size != Sizes.kleine && animal_2.Type != Types.vleeseter && animal_2.Weight > animal_1.Weight)
+                        else if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size != Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight > primaryAnimal.Weight)
                         {
-                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
-                            totalUsedSpace += animal_2.Weight;
-                            a_2 = -1;
+                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
                         }
-                        else if (animal_1.Type != Types.vleeseter)
+                        else if (primaryAnimal.Type != Types.vleeseter)
                         {
-                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
-                            totalUsedSpace += animal_2.Weight;
-                            a_2 = -1;
+                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
                         }
                     }
                 }
 
                 trainWagons.Add(wagon);
-                a_1 = -1;
+                i = -1;
             }
 
             return this;
+        }
+
+        private int AddAnimal(List<Animal> animals, Animal animal, Wagon wagon)
+        {
+            wagon.AddAnimalToWagon(animals, animal);
+            totalUsedSpace += animal.Weight;
+            return -1;
         }
 
         public List<Wagon> GetTrainWagons()

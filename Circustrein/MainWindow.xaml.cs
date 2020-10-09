@@ -12,6 +12,7 @@ namespace Circustrein
     public partial class MainWindow : Window
     {
         private Train train;
+
         public MainWindow()
         {
             InitializeComponent();
