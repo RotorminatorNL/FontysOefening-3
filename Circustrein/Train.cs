@@ -25,16 +25,9 @@ namespace Circustrein
 
         public Train MakeTrainReady(List<Animal> circusAnimals)
         {
-            // vul wagon met dieren
-            // wagon vol add wagon aan trein
-            // nieuw wagon vullen
-            // trein klaar wanneer alle dieren in een wagon zijn
-
-            Wagon wagon;
-
             for (int i = 0; i < circusAnimals.Count; i++)
             {
-                wagon = new Wagon(trainWagons.Count + 1);
+                Wagon wagon = new Wagon(trainWagons.Count + 1);
                 totalSpace += wagon.Space;
 
                 Animal primaryAnimal = circusAnimals[i];
