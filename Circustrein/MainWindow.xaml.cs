@@ -19,8 +19,9 @@ namespace Circustrein
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
             List<Animal> circusAnimals = GatherAnimals();
-            Train train = new Train();
+            Train train = new Train(circusAnimals.Count);
             train.MakeTrainReady(circusAnimals);
+
         }
 
         private List<Animal> GatherAnimals()
@@ -32,7 +33,7 @@ namespace Circustrein
                 {
                     string[] arrTbxTag = tbx.Tag.ToString().Split('_');
                     Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine :
-                                    arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
+                                 arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
                     Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
                     int weight = Convert.ToInt32(size);
 
