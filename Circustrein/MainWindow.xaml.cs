@@ -11,9 +11,6 @@ namespace Circustrein
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Train train;
-        private List<Animal> circusAnimals;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -21,13 +18,14 @@ namespace Circustrein
 
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
-            GatherAnimals();
-
+            List<Animal> circusAnimals = GatherAnimals();
+            Train train = new Train();
+            train.MakeTrainReady(circusAnimals);
         }
 
-        private void GatherAnimals()
+        private List<Animal> GatherAnimals()
         {
-            circusAnimals = new List<Animal>();
+            List<Animal> animals = new List<Animal>();
             foreach (TextBox tbx in FindVisualChildren<TextBox>(dpAnimalInput))
             {
                 if (tbx.Text != "0")
@@ -39,9 +37,10 @@ namespace Circustrein
                     int weight = Convert.ToInt32(size);
 
                     for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
-                        circusAnimals.Add(new Animal(size, type, weight));
+                        animals.Add(new Animal(size, type, weight));
                 }
             }
+            return animals;
         }
 
         /// <summary>

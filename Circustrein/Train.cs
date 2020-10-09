@@ -10,13 +10,18 @@ namespace Circustrein
     {
         private List<Wagon> trainWagons;
         private int totalSpace;
-        private int totalUsedSpace; 
+        private int totalUsedSpace;
 
         public Train()
         {
             trainWagons = new List<Wagon>();
             totalSpace = 0;
             totalUsedSpace = 0;
+        }
+
+        public void MakeTrainReady(List<Animal> circusAnimals)
+        {
+
         }
 
         public override string ToString()
