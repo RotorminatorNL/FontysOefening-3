@@ -12,55 +12,70 @@ namespace Circustrein
         private List<Wagon> trainWagons;
         private int totalSpace;
         private int totalUsedSpace;
-        private int animalCount;
+
+        public int AnimalCount { get; private set; }
 
         public Train(int AnimalCount)
         {
             trainWagons = new List<Wagon>();
             totalSpace = 0;
             totalUsedSpace = 0;
-            animalCount = AnimalCount;
+            this.AnimalCount = AnimalCount;
         }
 
-        public void MakeTrainReady(List<Animal> circusAnimals)
+        public Train MakeTrainReady(List<Animal> circusAnimals)
         {
             // vul wagon met dieren
             // wagon vol add wagon aan trein
             // nieuw wagon vullen
             // trein klaar wanneer alle dieren in een wagon zijn
 
-            circusAnimals = SortList(circusAnimals);
-        }
+            Wagon wagon;
 
-        private List<Animal> SortList(List<Animal> circusAnimals)
-        {
-            List<Animal> sortedList = new List<Animal>();
-            while (circusAnimals.Count != 0)
+            for (int a_1 = 0; a_1 < circusAnimals.Count; a_1++)
             {
-                Animal animal = null;
-                foreach (Animal a in circusAnimals)
+                wagon = new Wagon(trainWagons.Count + 1);
+                totalSpace += wagon.Space;
+
+                Animal animal_1 = circusAnimals[a_1];
+                wagon.AddAnimalToWagon(circusAnimals, animal_1);
+                totalUsedSpace += animal_1.Weight;
+
+                for (int a_2 = 0; a_2 < circusAnimals.Count; a_2++)
                 {
-                    if (animal == null)
-                        animal = a;
-                    else if (animal.Size < a.Size || a.Type == Types.vleeseter)
-                        animal = a;
-                    else if (animal.Size < a.Size && !MeatEaterPresent(circusAnimals))
-                        animal = a;
+                    Animal animal_2 = circusAnimals[a_2];
+                    if (wagon.UsedSpace + animal_2.Weight <= wagon.Space)
+                    {
+                        if (animal_1.Type == Types.vleeseter &&
+                            animal_2.Type != Types.vleeseter &&
+                            animal_2.Weight > animal_1.Weight)
+                        {
+                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
+                            totalUsedSpace += animal_2.Weight;
+                            a_2 = -1;
+                        }
+                        else if (animal_1.Type != Types.vleeseter)
+                        {
+                            wagon.AddAnimalToWagon(circusAnimals, animal_2);
+                            totalUsedSpace += animal_2.Weight;
+                            a_2 = -1;
+                        }
+                    }
                 }
-                sortedList.Add(animal);
-                circusAnimals.Remove(animal);
+
+                trainWagons.Add(wagon);
+                a_1 = -1;
             }
-            return sortedList;
+
+            return this;
         }
 
-        private bool MeatEaterPresent(List<Animal> animals)
+        public List<Wagon> GetTrainWagons()
         {
-            foreach (Animal a in animals)
-            {
-                if (a.Type == Types.vleeseter)
-                    return true;
-            }
-            return false;
+            List<Wagon> wagons = new List<Wagon>();
+            foreach (Wagon wagon in trainWagons)
+                wagons.Add(wagon);
+            return wagons;
         }
 
         public override string ToString()

@@ -19,9 +19,7 @@ namespace Circustrein
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
             List<Animal> circusAnimals = GatherAnimals();
-            Train train = new Train(circusAnimals.Count);
-            train.MakeTrainReady(circusAnimals);
-
+            ShowResults(new Train(circusAnimals.Count).MakeTrainReady(circusAnimals));
         }
 
         private List<Animal> GatherAnimals()
@@ -63,6 +61,23 @@ namespace Circustrein
                         yield return childOfChild;
                 }
             }
+        }
+
+        private void ShowResults(Train train)
+        {
+            LblAmountAnimals.Content = train.AnimalCount;
+            LblAmountWagons.Content = train.GetTrainWagons().Count;
+            LblTotalSpaceUsage.Content = train.ToString();
+
+            foreach (Wagon wagon in train.GetTrainWagons())
+            {
+                LvWagons.Items.Add(new ListViewItem { Content = $"Wagon {wagon.wagonID}" });
+            }
+        }
+
+        private void LvWagons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
