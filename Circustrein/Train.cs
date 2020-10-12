@@ -37,20 +37,28 @@ namespace Circustrein
                 for (int j = 0; j < circusAnimals.Count; j++)
                 {
                     Animal secondaryAnimal = circusAnimals[j];
-                    if (wagon.UsedSpace + secondaryAnimal.Weight <= wagon.Space)
+
+                    if (wagon.EnoughSpace(secondaryAnimal))
                     {
-                        if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size == Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight == Convert.ToInt32(Sizes.middelgrote))
+                        if (secondaryAnimal.CompatibleWith(primaryAnimal))
                         {
-                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
+                            wagon.AddAnimalToWagon(circusAnimals, secondaryAnimal);
+                            totalUsedSpace += secondaryAnimal.Weight;
+                            j = -1;
                         }
-                        else if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size != Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight > primaryAnimal.Weight)
-                        {
-                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
-                        }
-                        else if (primaryAnimal.Type != Types.vleeseter)
-                        {
-                            j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
-                        }
+
+                        //if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size == Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight == Convert.ToInt32(Sizes.middelgrote))
+                        //{
+                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
+                        //}
+                        //else if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size != Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight > primaryAnimal.Weight)
+                        //{
+                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
+                        //}
+                        //else if (primaryAnimal.Type != Types.vleeseter)
+                        //{
+                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
+                        //}
                     }
                 }
 
@@ -59,13 +67,6 @@ namespace Circustrein
             }
 
             return this;
-        }
-
-        private int AddAnimal(List<Animal> animals, Animal animal, Wagon wagon)
-        {
-            wagon.AddAnimalToWagon(animals, animal);
-            totalUsedSpace += animal.Weight;
-            return -1;
         }
 
         public List<Wagon> GetTrainWagons()

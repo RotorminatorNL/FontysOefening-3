@@ -3,10 +3,10 @@
 namespace Circustrein.Tests
 {
     [TestClass()]
-    public class TrainTests
+    public class AnimalTests
     {
         [TestMethod()]
-        public void MakeTrainReadyTest()
+        public void CompatibleWithTest()
         {
             Assert.AreEqual(true,true);
         }

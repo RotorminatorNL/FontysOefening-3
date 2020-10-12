@@ -1,5 +1,4 @@
-﻿
-namespace Circustrein
+﻿namespace Circustrein
 {
     public enum Types
     {

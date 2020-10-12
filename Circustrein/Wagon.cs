@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Circustrein
 {
@@ -24,6 +20,11 @@ namespace Circustrein
             Efficiency = "";
             AmountAnimals = 0;
             wagonID = WagonID;
+        }
+
+        public bool EnoughSpace(Animal animal)
+        {
+            return Space >= (UsedSpace + animal.Weight);
         }
 
         public void AddAnimalToWagon(List<Animal> animals, Animal animal)

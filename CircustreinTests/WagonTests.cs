@@ -3,10 +3,10 @@
 namespace Circustrein.Tests
 {
     [TestClass()]
-    public class TrainTests
+    public class WagonTests
     {
         [TestMethod()]
-        public void MakeTrainReadyTest()
+        public void EnoughSpaceTest()
         {
             Assert.AreEqual(true,true);
         }
