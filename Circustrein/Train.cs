@@ -46,19 +46,6 @@ namespace Circustrein
                             totalUsedSpace += secondaryAnimal.Weight;
                             j = -1;
                         }
-
-                        //if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size == Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight == Convert.ToInt32(Sizes.middelgrote))
-                        //{
-                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
-                        //}
-                        //else if (primaryAnimal.Type == Types.vleeseter && primaryAnimal.Size != Sizes.kleine && secondaryAnimal.Type != Types.vleeseter && secondaryAnimal.Weight > primaryAnimal.Weight)
-                        //{
-                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
-                        //}
-                        //else if (primaryAnimal.Type != Types.vleeseter)
-                        //{
-                        //    j = AddAnimal(circusAnimals, secondaryAnimal, wagon);
-                        //}
                     }
                 }
 
