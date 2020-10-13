@@ -15,19 +15,6 @@
                 <Rectangle Fill="Black" Height="2" Width="500"/>
                 <DockPanel HorizontalAlignment="Center" Name="dpAnimalInput">
                     <StackPanel Width="120">
-                        <Label Content="Vleeseter" FontSize="20" HorizontalContentAlignment="Center"/>
-                        <Label Content="Groot"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <Label Content="Middelgroot"   FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                        <Label Content="Klein"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
-                    </StackPanel>
-                    <StackPanel Width="70">
-                        <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
-                        <TextBox x:Name="TbxBigMeatEater"     Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="grote_vleeseter"/>
-                        <TextBox x:Name="TbxMediumMeatEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="middelgrote_vleeseter"/>
-                        <TextBox x:Name="TbxSmallMeatEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="kleine_vleeseter"/>
-                    </StackPanel>
-                    <Rectangle Width="30"/>
-                    <StackPanel Width="120">
                         <Label Content="Planteter" FontSize="20" HorizontalContentAlignment="Center"/>
                         <Label Content="Groot"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
                         <Label Content="Middelgroot"   FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
@@ -38,6 +25,19 @@
                         <TextBox x:Name="TbxBigPlantEater"      Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="grote_planteter"/>
                         <TextBox x:Name="TbxMediumPlantEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="middelgrote_planteter"/>
                         <TextBox x:Name="TbxSmallPlantEater"    Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="kleine_planteter"/>
+                    </StackPanel>
+                    <Rectangle Width="30"/>
+                    <StackPanel Width="120">
+                        <Label Content="Vleeseter" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <Label Content="Groot"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Middelgroot"   FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                        <Label Content="Klein"         FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5"/>
+                    </StackPanel>
+                    <StackPanel Width="70">
+                        <Label Content="Aantal" FontSize="20" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="TbxBigMeatEater"     Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="grote_vleeseter"/>
+                        <TextBox x:Name="TbxMediumMeatEater"  Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="middelgrote_vleeseter"/>
+                        <TextBox x:Name="TbxSmallMeatEater"   Text="0"   BorderBrush="LightBlue" FontSize="18" Height="40" Margin="0,10,0,10" Padding="0,5,0,5" Tag="kleine_vleeseter"/>
                     </StackPanel>
                 </DockPanel>
             </StackPanel>

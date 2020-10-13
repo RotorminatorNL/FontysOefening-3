@@ -2,8 +2,8 @@
 {
     public enum Types
     {
-        vleeseter,
-        planteter
+        vleeseter = 1,
+        planteter = 0
     }
 
     public enum Sizes

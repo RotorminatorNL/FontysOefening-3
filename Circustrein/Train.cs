@@ -25,6 +25,8 @@ namespace Circustrein
 
         public Train MakeTrainReady(List<Animal> circusAnimals)
         {
+            circusAnimals = SortingList(circusAnimals);
+
             for (int i = 0; i < circusAnimals.Count; i++)
             {
                 Wagon wagon = new Wagon(trainWagons.Count + 1);
@@ -54,6 +56,42 @@ namespace Circustrein
             }
 
             return this;
+        }
+
+        private List<Animal> SortingList(List<Animal> unSortedAnimalList)
+        {
+            List<Animal> sortedAnimalList = new List<Animal>();
+            Animal highestPriorityAnimal = null;
+
+            for (int i = 0; i < unSortedAnimalList.Count; i++)
+            {
+                if (highestPriorityAnimal == null)
+                {
+                    highestPriorityAnimal = unSortedAnimalList[i];
+                }
+                else if (Convert.ToInt32(highestPriorityAnimal.Type) < Convert.ToInt32(unSortedAnimalList[i].Type))
+                {
+                    highestPriorityAnimal = unSortedAnimalList[i];
+                }
+                else if (highestPriorityAnimal.Weight < unSortedAnimalList[i].Weight)
+                {
+                    highestPriorityAnimal = unSortedAnimalList[i];
+                }
+                else
+                {
+                    // do nothing
+                }
+
+                if (unSortedAnimalList.Count != 0 && unSortedAnimalList.Count <= i + 1)
+                {
+                    sortedAnimalList.Add(highestPriorityAnimal);
+                    unSortedAnimalList.Remove(highestPriorityAnimal);
+                    highestPriorityAnimal = null;
+                    i = -1;
+                }
+            }
+
+            return sortedAnimalList;
         }
 
         public List<Wagon> GetTrainWagons()
