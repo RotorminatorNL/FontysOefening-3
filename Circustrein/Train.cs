@@ -58,7 +58,7 @@ namespace Circustrein
             return this;
         }
 
-        private List<Animal> SortingList(List<Animal> unSortedAnimalList)
+        public static List<Animal> SortingList(List<Animal> unSortedAnimalList)
         {
             List<Animal> sortedAnimalList = new List<Animal>();
             Animal highestPriorityAnimal = null;
@@ -75,7 +75,18 @@ namespace Circustrein
                 }
                 else if (highestPriorityAnimal.Weight < unSortedAnimalList[i].Weight)
                 {
-                    highestPriorityAnimal = unSortedAnimalList[i];
+                    if (unSortedAnimalList[i].Type == Types.vleeseter)
+                    {
+                        highestPriorityAnimal = unSortedAnimalList[i];
+                    }
+                    else if (highestPriorityAnimal.Type == Types.planteter)
+                    {
+                        highestPriorityAnimal = unSortedAnimalList[i];
+                    }
+                    else
+                    {
+                        // do nothing
+                    }
                 }
                 else
                 {

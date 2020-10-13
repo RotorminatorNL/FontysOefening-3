@@ -20,8 +20,7 @@ namespace Circustrein
 
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
-            List<Animal> circusAnimals = GatherAnimals();
-            train = new Train(circusAnimals.Count).MakeTrainReady(circusAnimals);
+            train = new Train(GatherAnimals().Count).MakeTrainReady(Train.SortingList(GatherAnimals()));
             ShowResults();
         }
 
