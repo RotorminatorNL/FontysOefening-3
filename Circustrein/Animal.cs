@@ -1,4 +1,6 @@
-﻿namespace Circustrein
+﻿using System;
+
+namespace Circustrein
 {
     public class Animal
     {
@@ -6,11 +8,11 @@
         public Types Type { get; private set; }
         public int Weight { get; private set; }
 
-        public Animal(Sizes size, Types type, int weight)
+        public Animal(Sizes size, Types type)
         {
             Size = size;
             Type = type;
-            Weight = weight;
+            Weight = Convert.ToInt32(size);
         }
 
         public bool CompatibleWith(Animal animal)

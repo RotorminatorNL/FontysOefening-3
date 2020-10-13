@@ -34,12 +34,11 @@ namespace Circustrein
                 Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine :
                                 arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
                 Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
-                int weight = Convert.ToInt32(size);
 
                 try
                 {
                     for (int i = 0; i < Convert.ToInt32(tbx.Text); i++)
-                        animals.Add(new Animal(size, type, weight));
+                        animals.Add(new Animal(size, type));
                 }
                 catch (Exception)
                 {

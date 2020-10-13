@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Circustrein.Tests
 {
@@ -8,7 +9,16 @@ namespace Circustrein.Tests
         [TestMethod()]
         public void CompatibleWithTest()
         {
-            Assert.AreEqual(true,true);
+            // Arrange
+            bool expected = true;
+
+            // Act
+            Animal primaryAnimal = new Animal(Sizes.middelgrote,Types.vleeseter);
+            Animal secundairyAnimal = new Animal(Sizes.grote, Types.planteter);
+            bool actual = primaryAnimal.CompatibleWith(secundairyAnimal);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
