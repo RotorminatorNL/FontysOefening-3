@@ -9,7 +9,7 @@ namespace Circustrein
 {
     public class Train
     {
-        private List<Wagon> trainWagons;
+        private readonly List<Wagon> trainWagons;
         private int totalSpace;
         private int totalUsedSpace;
 
@@ -25,8 +25,6 @@ namespace Circustrein
 
         public Train MakeTrainReady(List<Animal> circusAnimals)
         {
-            circusAnimals = SortingList(circusAnimals);
-
             for (int i = 0; i < circusAnimals.Count; i++)
             {
                 Wagon wagon = new Wagon(trainWagons.Count + 1);

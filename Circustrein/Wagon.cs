@@ -4,8 +4,8 @@ namespace Circustrein
 {
     public class Wagon
     {
-        private List<Animal> animalsInWagon;
-        private int wagonID;
+        private readonly List<Animal> animalsInWagon;
+        private readonly int wagonID;
 
         public readonly int Space;
         public int UsedSpace { get; private set; }
