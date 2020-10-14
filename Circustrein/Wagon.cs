@@ -23,18 +23,35 @@ namespace Circustrein
             wagonID = WagonID;
         }
 
-        public bool EnoughSpace(Animal animal)
+        public bool AddAnimalToWagon(List<Animal> animals, Animal animal)
         {
-            return Space >= (UsedSpace + Convert.ToInt32(animal.Size));
+            if(EnoughSpace(animal))
+            {
+                bool animalIsCompatible = true;
+                foreach (Animal a in animalsInWagon)
+                {
+                    if (!a.CompatibleWith(animal))
+                    {
+                        animalIsCompatible = false;
+                    }
+                }
+
+                if (animalIsCompatible)
+                {
+                    animalsInWagon.Add(animal);
+                    UsedSpace += Convert.ToInt32(animal.Size);
+                    Efficiency = $"{UsedSpace} / {Space}";
+                    AmountAnimals++;
+                    animals.Remove(animal);
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public void AddAnimalToWagon(List<Animal> animals, Animal animal)
+        private bool EnoughSpace(Animal animal)
         {
-            animalsInWagon.Add(animal);
-            UsedSpace += Convert.ToInt32(animal.Size);
-            Efficiency = $"{UsedSpace} / {Space}";
-            AmountAnimals++;
-            animals.Remove(animal);
+            return Space >= (UsedSpace + Convert.ToInt32(animal.Size));
         }
 
         public List<Animal> GetAnimalsInWagon()

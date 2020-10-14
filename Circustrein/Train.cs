@@ -37,18 +37,15 @@ namespace Circustrein
                 Animal primaryAnimal = circusAnimals[i];
                 wagon.AddAnimalToWagon(circusAnimals, primaryAnimal);
                 totalUsedSpace += Convert.ToInt32(primaryAnimal.Size);
+
                 for (int j = 0; j < circusAnimals.Count; j++)
                 {
                     Animal secondaryAnimal = circusAnimals[j];
 
-                    if (wagon.EnoughSpace(secondaryAnimal))
+                    if (wagon.AddAnimalToWagon(circusAnimals, secondaryAnimal))
                     {
-                        if (secondaryAnimal.CompatibleWith(primaryAnimal))
-                        {
-                            wagon.AddAnimalToWagon(circusAnimals, secondaryAnimal);
-                            totalUsedSpace += Convert.ToInt32(secondaryAnimal.Size);
-                            j = -1;
-                        }
+                        totalUsedSpace += Convert.ToInt32(secondaryAnimal.Size);
+                        j = -1;
                     }
                 }
 
