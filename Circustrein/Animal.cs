@@ -19,11 +19,11 @@ namespace Circustrein
             {
                 return false;
             }
-            else if (animal.Type == Types.vleeseter && Convert.ToInt32(animal.Size) >= Convert.ToInt32(Size))
+            else if (Type == Types.vleeseter && Convert.ToInt32(Size) >= Convert.ToInt32(animal.Size))
             {
                 return false;
             }
-            else if (Type == Types.vleeseter && Convert.ToInt32(Size) >= Convert.ToInt32(animal.Size))
+            else if (animal.Type == Types.vleeseter && Convert.ToInt32(animal.Size) >= Convert.ToInt32(Size))
             {
                 return false;
             }
