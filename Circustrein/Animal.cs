@@ -6,13 +6,11 @@ namespace Circustrein
     {
         public Sizes Size { get; private set; }
         public Types Type { get; private set; }
-        public int Weight { get; private set; }
 
         public Animal(Sizes size, Types type)
         {
             Size = size;
             Type = type;
-            Weight = Convert.ToInt32(size);
         }
 
         public bool CompatibleWith(Animal animal)
@@ -21,11 +19,11 @@ namespace Circustrein
             {
                 return false;
             }
-            else if (animal.Type == Types.vleeseter && animal.Weight >= Weight)
+            else if (animal.Type == Types.vleeseter && Convert.ToInt32(animal.Size) >= Convert.ToInt32(Size))
             {
                 return false;
             }
-            else if (Type == Types.vleeseter && Weight >= animal.Weight)
+            else if (Type == Types.vleeseter && Convert.ToInt32(Size) >= Convert.ToInt32(animal.Size))
             {
                 return false;
             }

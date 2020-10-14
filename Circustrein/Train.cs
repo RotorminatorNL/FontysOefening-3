@@ -32,8 +32,7 @@ namespace Circustrein
 
                 Animal primaryAnimal = circusAnimals[i];
                 wagon.AddAnimalToWagon(circusAnimals, primaryAnimal);
-                totalUsedSpace += primaryAnimal.Weight;
-
+                totalUsedSpace += Convert.ToInt32(primaryAnimal.Size);
                 for (int j = 0; j < circusAnimals.Count; j++)
                 {
                     Animal secondaryAnimal = circusAnimals[j];
@@ -43,7 +42,7 @@ namespace Circustrein
                         if (secondaryAnimal.CompatibleWith(primaryAnimal))
                         {
                             wagon.AddAnimalToWagon(circusAnimals, secondaryAnimal);
-                            totalUsedSpace += secondaryAnimal.Weight;
+                            totalUsedSpace += Convert.ToInt32(secondaryAnimal.Size);
                             j = -1;
                         }
                     }
@@ -71,7 +70,7 @@ namespace Circustrein
                 {
                     highestPriorityAnimal = unSortedAnimalList[i];
                 }
-                else if (highestPriorityAnimal.Weight < unSortedAnimalList[i].Weight)
+                else if (Convert.ToInt32(highestPriorityAnimal.Size) < Convert.ToInt32(unSortedAnimalList[i].Size))
                 {
                     if (unSortedAnimalList[i].Type == Types.vleeseter)
                     {

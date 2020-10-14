@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Circustrein
 {
@@ -24,13 +25,13 @@ namespace Circustrein
 
         public bool EnoughSpace(Animal animal)
         {
-            return Space >= (UsedSpace + animal.Weight);
+            return Space >= (UsedSpace + Convert.ToInt32(animal.Size));
         }
 
         public void AddAnimalToWagon(List<Animal> animals, Animal animal)
         {
             animalsInWagon.Add(animal);
-            UsedSpace += animal.Weight;
+            UsedSpace += Convert.ToInt32(animal.Size);
             Efficiency = $"{UsedSpace} / {Space}";
             AmountAnimals++;
             animals.Remove(animal);
