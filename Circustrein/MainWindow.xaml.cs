@@ -20,7 +20,7 @@ namespace Circustrein
 
         private void BtnSeeResult_Click(object sender, RoutedEventArgs e)
         {
-            train = new Train(GatherAnimals().Count, Train.SortingList(GatherAnimals()));
+            train = new Train(GatherAnimals());
             ShowResults();
         }
 

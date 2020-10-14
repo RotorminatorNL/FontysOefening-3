@@ -15,14 +15,16 @@ namespace Circustrein
 
         public int AnimalCount { get; private set; }
 
-        public Train(int AnimalCount, List<Animal> circusAnimals)
+        public Train(List<Animal> circusAnimals)
         {
             trainWagons = new List<Wagon>();
             totalSpace = 0;
             totalUsedSpace = 0;
-            this.AnimalCount = AnimalCount;
+            this.AnimalCount = circusAnimals.Count;
 
-            MakeTrainReady(circusAnimals);
+            circusAnimals = SortingList(circusAnimals);
+
+            MakeTrainReady(circusAnimals); 
         }
 
         private void MakeTrainReady(List<Animal> circusAnimals)
@@ -55,7 +57,7 @@ namespace Circustrein
             }
         }
 
-        public static List<Animal> SortingList(List<Animal> unSortedAnimalList)
+        private List<Animal> SortingList(List<Animal> unSortedAnimalList)
         {
             List<Animal> sortedAnimalList = new List<Animal>();
             Animal highestPriorityAnimal = null;
