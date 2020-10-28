@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="AnimalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrainTests.cs" />
     <Compile Include="WagonTests.cs" />
   </ItemGroup>
   <ItemGroup>
