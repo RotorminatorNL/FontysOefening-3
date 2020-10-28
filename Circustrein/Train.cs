@@ -10,11 +10,11 @@ namespace Circustrein
     public class Train
     {
         private readonly List<Wagon> trainWagons;
-        private List<Animal> CircusAnimals;
+        private readonly List<Animal> CircusAnimals;
         private int totalSpace;
         private int totalUsedSpace;
 
-        public int AnimalCount { get; private set; }
+        public int AnimalCount { get; }
 
         public Train(List<Animal> circusAnimals)
         {
@@ -23,7 +23,7 @@ namespace Circustrein
             trainWagons = new List<Wagon>();
             totalSpace = 0;
             totalUsedSpace = 0;
-            AnimalCount = circusAnimals.Count;
+            AnimalCount = CircusAnimals.Count;
 
             CircusAnimals = SortingList();
 
@@ -32,30 +32,28 @@ namespace Circustrein
 
         private void MakeTrainReady()
         {
-            for (int i = 0; i < CircusAnimals.Count; i++)
+            if (CircusAnimals.Count != 0)
             {
-                Wagon wagon = new Wagon(trainWagons.Count + 1);
-                totalSpace += wagon.Space;
+                trainWagons.Add(new Wagon(trainWagons.Count + 1));
 
-                Animal primaryAnimal = CircusAnimals[i];
-                wagon.AddAnimalToWagon(primaryAnimal);
-                CircusAnimals.Remove(primaryAnimal);
-                totalUsedSpace += Convert.ToInt32(primaryAnimal.Size);
-
-                for (int j = 0; j < CircusAnimals.Count; j++)
+                for (int i = 0; i < trainWagons.Count; i++)
                 {
-                    Animal secondaryAnimal = CircusAnimals[j];
-
-                    if (wagon.AddAnimalToWagon(secondaryAnimal))
+                    bool addedAnimalSuccesfully = false;
+                    if (trainWagons[i].AddAnimalToWagon(CircusAnimals[0]))
                     {
-                        totalUsedSpace += Convert.ToInt32(secondaryAnimal.Size);
-                        CircusAnimals.Remove(secondaryAnimal);
-                        j = -1;
+                        totalUsedSpace += Convert.ToInt32(CircusAnimals[0].Size);
+                        CircusAnimals.Remove(CircusAnimals[0]);
+                        addedAnimalSuccesfully = true;
                     }
-                }
 
-                trainWagons.Add(wagon);
-                i = -1;
+                    if (!addedAnimalSuccesfully && !trainWagons[i].AddAnimalToWagon(CircusAnimals[0]) && trainWagons.Count == i + 1)
+                        trainWagons.Add(new Wagon(trainWagons.Count + 1));
+
+                    if (CircusAnimals.Count != 0 && trainWagons.Count == i + 1)
+                        i = -1;
+
+                    totalSpace = trainWagons.Count * trainWagons[0].Space;
+                }
             }
         }
 
