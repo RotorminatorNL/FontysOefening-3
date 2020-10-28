@@ -24,7 +24,6 @@ namespace Circustrein.Tests
 
             // Act
             bool actual = wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -48,7 +47,6 @@ namespace Circustrein.Tests
 
             // Act
             bool actual = wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
 
             // Assert
             Assert.AreEqual(expected, actual);
