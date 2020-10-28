@@ -10,6 +10,7 @@ namespace Circustrein
     public class Train
     {
         private readonly List<Wagon> trainWagons;
+        private List<Animal> CircusAnimals;
         private int totalSpace;
         private int totalUsedSpace;
 
@@ -17,34 +18,38 @@ namespace Circustrein
 
         public Train(List<Animal> circusAnimals)
         {
+            CircusAnimals = circusAnimals;
+
             trainWagons = new List<Wagon>();
             totalSpace = 0;
             totalUsedSpace = 0;
-            this.AnimalCount = circusAnimals.Count;
+            AnimalCount = circusAnimals.Count;
 
-            circusAnimals = SortingList(circusAnimals);
+            CircusAnimals = SortingList();
 
-            MakeTrainReady(circusAnimals); 
+            MakeTrainReady();
         }
 
-        private void MakeTrainReady(List<Animal> circusAnimals)
+        private void MakeTrainReady()
         {
-            for (int i = 0; i < circusAnimals.Count; i++)
+            for (int i = 0; i < CircusAnimals.Count; i++)
             {
                 Wagon wagon = new Wagon(trainWagons.Count + 1);
                 totalSpace += wagon.Space;
 
-                Animal primaryAnimal = circusAnimals[i];
-                wagon.AddAnimalToWagon(circusAnimals, primaryAnimal);
+                Animal primaryAnimal = CircusAnimals[i];
+                wagon.AddAnimalToWagon(primaryAnimal);
+                CircusAnimals.Remove(primaryAnimal);
                 totalUsedSpace += Convert.ToInt32(primaryAnimal.Size);
 
-                for (int j = 0; j < circusAnimals.Count; j++)
+                for (int j = 0; j < CircusAnimals.Count; j++)
                 {
-                    Animal secondaryAnimal = circusAnimals[j];
+                    Animal secondaryAnimal = CircusAnimals[j];
 
-                    if (wagon.AddAnimalToWagon(circusAnimals, secondaryAnimal))
+                    if (wagon.AddAnimalToWagon(secondaryAnimal))
                     {
                         totalUsedSpace += Convert.ToInt32(secondaryAnimal.Size);
+                        CircusAnimals.Remove(secondaryAnimal);
                         j = -1;
                     }
                 }
@@ -54,45 +59,37 @@ namespace Circustrein
             }
         }
 
-        private List<Animal> SortingList(List<Animal> unSortedAnimalList)
+        private List<Animal> SortingList()
         {
             List<Animal> sortedAnimalList = new List<Animal>();
             Animal highestPriorityAnimal = null;
 
-            for (int i = 0; i < unSortedAnimalList.Count; i++)
+            for (int i = 0; i < CircusAnimals.Count; i++)
             {
                 if (highestPriorityAnimal == null)
                 {
-                    highestPriorityAnimal = unSortedAnimalList[i];
+                    highestPriorityAnimal = CircusAnimals[i];
                 }
-                else if (Convert.ToInt32(highestPriorityAnimal.Type) < Convert.ToInt32(unSortedAnimalList[i].Type))
+                else if (Convert.ToInt32(highestPriorityAnimal.Type) < Convert.ToInt32(CircusAnimals[i].Type))
                 {
-                    highestPriorityAnimal = unSortedAnimalList[i];
+                    highestPriorityAnimal = CircusAnimals[i];
                 }
-                else if (Convert.ToInt32(highestPriorityAnimal.Size) < Convert.ToInt32(unSortedAnimalList[i].Size))
+                else if (Convert.ToInt32(highestPriorityAnimal.Size) < Convert.ToInt32(CircusAnimals[i].Size))
                 {
-                    if (unSortedAnimalList[i].Type == Types.vleeseter)
+                    if (CircusAnimals[i].Type == Types.vleeseter)
                     {
-                        highestPriorityAnimal = unSortedAnimalList[i];
+                        highestPriorityAnimal = CircusAnimals[i];
                     }
                     else if (highestPriorityAnimal.Type == Types.planteter)
                     {
-                        highestPriorityAnimal = unSortedAnimalList[i];
+                        highestPriorityAnimal = CircusAnimals[i];
                     }
-                    else
-                    {
-                        // do nothing
-                    }
-                }
-                else
-                {
-                    // do nothing
                 }
 
-                if (unSortedAnimalList.Count != 0 && unSortedAnimalList.Count <= i + 1)
+                if (CircusAnimals.Count != 0 && CircusAnimals.Count <= i + 1)
                 {
                     sortedAnimalList.Add(highestPriorityAnimal);
-                    unSortedAnimalList.Remove(highestPriorityAnimal);
+                    CircusAnimals.Remove(highestPriorityAnimal);
                     highestPriorityAnimal = null;
                     i = -1;
                 }
@@ -101,12 +98,9 @@ namespace Circustrein
             return sortedAnimalList;
         }
 
-        public List<Wagon> GetTrainWagons()
+        public IReadOnlyList<Wagon> GetTrainWagons()
         {
-            List<Wagon> wagons = new List<Wagon>();
-            foreach (Wagon wagon in trainWagons)
-                wagons.Add(wagon);
-            return wagons;
+            return trainWagons.AsReadOnly();
         }
 
         public override string ToString()

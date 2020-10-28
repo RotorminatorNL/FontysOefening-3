@@ -12,7 +12,6 @@ namespace Circustrein.Tests
             // Arrange
             bool expected = false;
 
-            // Act
             List<Animal> animals = new List<Animal>
             {
                 new Animal(Sizes.grote, Types.vleeseter),
@@ -20,9 +19,12 @@ namespace Circustrein.Tests
             };
 
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals, animals[0]);
+            wagon.AddAnimalToWagon(animals[0]);
+            animals.Remove(animals[0]);
 
-            bool actual = wagon.AddAnimalToWagon(animals, animals[0]);
+            // Act
+            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            animals.Remove(animals[0]);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -34,7 +36,6 @@ namespace Circustrein.Tests
             // Arrange
             bool expected = true;
 
-            // Act
             List<Animal> animals = new List<Animal>
             {
                 new Animal(Sizes.grote, Types.planteter),
@@ -42,46 +43,15 @@ namespace Circustrein.Tests
             };
 
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals, animals[0]);
+            wagon.AddAnimalToWagon(animals[0]);
+            animals.Remove(animals[0]);
 
-            bool actual = wagon.AddAnimalToWagon(animals, animals[0]);
+            // Act
+            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            animals.Remove(animals[0]);
 
             // Assert
             Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
-        public void GetAnimalsInWagon_ShouldBeEqual()
-        {
-            Animal smallMeatEater = new Animal(Sizes.kleine, Types.vleeseter);
-            Animal bigPlantEater = new Animal(Sizes.grote, Types.planteter);
-            Animal mediumPlantEater = new Animal(Sizes.middelgrote, Types.planteter);
-
-            // Arrange
-            List<Animal> expected = new List<Animal>()
-            {
-                smallMeatEater,
-                bigPlantEater,
-                mediumPlantEater
-            };
-
-            // Act
-            List<Animal> animals = new List<Animal>
-            {
-                smallMeatEater,
-                bigPlantEater,
-                mediumPlantEater
-            };
-
-            Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals, animals[0]);
-            wagon.AddAnimalToWagon(animals, animals[0]);
-            wagon.AddAnimalToWagon(animals, animals[0]);
-
-            List<Animal> actual = wagon.GetAnimalsInWagon();
-
-            // Assert
-            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }

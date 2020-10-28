@@ -11,10 +11,10 @@ namespace Circustrein.Tests
         {
             // Arrange
             bool expected = false;
-
-            // Act
             Animal primaryAnimal = new Animal(Sizes.middelgrote, Types.planteter);
             Animal secundairyAnimal = new Animal(Sizes.middelgrote, Types.vleeseter);
+
+            // Act
             bool actual = primaryAnimal.CompatibleWith(secundairyAnimal);
 
             // Assert
@@ -26,10 +26,10 @@ namespace Circustrein.Tests
         {
             // Arrange
             bool expected = true;
+            Animal primaryAnimal = new Animal(Sizes.middelgrote, Types.vleeseter);
+            Animal secundairyAnimal = new Animal(Sizes.grote, Types.planteter);
 
             // Act
-            Animal primaryAnimal = new Animal(Sizes.middelgrote,Types.vleeseter);
-            Animal secundairyAnimal = new Animal(Sizes.grote, Types.planteter);
             bool actual = primaryAnimal.CompatibleWith(secundairyAnimal);
 
             // Assert

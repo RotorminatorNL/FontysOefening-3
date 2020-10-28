@@ -4,8 +4,8 @@ namespace Circustrein
 {
     public class Animal
     {
-        public Sizes Size { get; private set; }
-        public Types Type { get; private set; }
+        public Sizes Size { get; }
+        public Types Type { get; }
 
         public Animal(Sizes size, Types type)
         {
@@ -27,10 +27,7 @@ namespace Circustrein
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         public override string ToString()

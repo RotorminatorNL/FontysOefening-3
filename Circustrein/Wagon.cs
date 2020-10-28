@@ -23,7 +23,7 @@ namespace Circustrein
             wagonID = WagonID;
         }
 
-        public bool AddAnimalToWagon(List<Animal> animals, Animal animal)
+        public bool AddAnimalToWagon(Animal animal)
         {
             if(EnoughSpace(animal))
             {
@@ -42,7 +42,6 @@ namespace Circustrein
                     UsedSpace += Convert.ToInt32(animal.Size);
                     Efficiency = $"{UsedSpace} / {Space}";
                     AmountAnimals++;
-                    animals.Remove(animal);
                     return true;
                 }
             }
@@ -54,12 +53,9 @@ namespace Circustrein
             return Space >= (UsedSpace + Convert.ToInt32(animal.Size));
         }
 
-        public List<Animal> GetAnimalsInWagon()
+        public IReadOnlyList<Animal> GetAnimalsInWagon()
         {
-            List<Animal> animals = new List<Animal>();
-            foreach (Animal animal in animalsInWagon)
-                animals.Add(animal);
-            return animals;
+            return animalsInWagon.AsReadOnly();
         }
 
         public override string ToString()
