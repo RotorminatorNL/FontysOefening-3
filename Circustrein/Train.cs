@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Circustrein
 {
@@ -32,28 +33,23 @@ namespace Circustrein
 
         private void MakeTrainReady()
         {
-            if (CircusAnimals.Count != 0)
+            while (CircusAnimals.Count != 0)
             {
-                trainWagons.Add(new Wagon(trainWagons.Count + 1));
-
-                for (int i = 0; i < trainWagons.Count; i++)
+                bool addedAnimalSuccesfully = false;
+                foreach (Wagon wagon in trainWagons)
                 {
-                    bool addedAnimalSuccesfully = false;
-                    if (trainWagons[i].AddAnimalToWagon(CircusAnimals[0]))
+                    addedAnimalSuccesfully = wagon.AddAnimalToWagon(CircusAnimals[0]);
+                    if (addedAnimalSuccesfully)
                     {
                         totalUsedSpace += Convert.ToInt32(CircusAnimals[0].Size);
                         CircusAnimals.Remove(CircusAnimals[0]);
-                        addedAnimalSuccesfully = true;
                     }
-
-                    if (!addedAnimalSuccesfully && !trainWagons[i].AddAnimalToWagon(CircusAnimals[0]) && trainWagons.Count == i + 1)
-                        trainWagons.Add(new Wagon(trainWagons.Count + 1));
-
-                    if (CircusAnimals.Count != 0 && trainWagons.Count == i + 1)
-                        i = -1;
-
-                    totalSpace = trainWagons.Count * trainWagons[0].Space;
                 }
+
+                if(!addedAnimalSuccesfully)
+                    trainWagons.Add(new Wagon(trainWagons.Count + 1));
+
+                totalSpace = trainWagons.Count * trainWagons[0].Space;
             }
         }
 
@@ -62,35 +58,34 @@ namespace Circustrein
             List<Animal> sortedAnimalList = new List<Animal>();
             Animal highestPriorityAnimal = null;
 
-            for (int i = 0; i < CircusAnimals.Count; i++)
+            while (CircusAnimals.Count != 0)
             {
-                if (highestPriorityAnimal == null)
+                foreach (Animal animal in CircusAnimals)
                 {
-                    highestPriorityAnimal = CircusAnimals[i];
-                }
-                else if (Convert.ToInt32(highestPriorityAnimal.Type) < Convert.ToInt32(CircusAnimals[i].Type))
-                {
-                    highestPriorityAnimal = CircusAnimals[i];
-                }
-                else if (Convert.ToInt32(highestPriorityAnimal.Size) < Convert.ToInt32(CircusAnimals[i].Size))
-                {
-                    if (CircusAnimals[i].Type == Types.vleeseter)
+                    if (highestPriorityAnimal == null)
                     {
-                        highestPriorityAnimal = CircusAnimals[i];
+                        highestPriorityAnimal = animal;
                     }
-                    else if (highestPriorityAnimal.Type == Types.planteter)
+                    else if (highestPriorityAnimal.Type < animal.Type)
                     {
-                        highestPriorityAnimal = CircusAnimals[i];
+                        highestPriorityAnimal = animal;
+                    }
+                    else if (highestPriorityAnimal.Size < animal.Size)
+                    {
+                        if (animal.Type == Types.vleeseter)
+                        {
+                            highestPriorityAnimal = animal;
+                        }
+                        else if (highestPriorityAnimal.Type == Types.planteter)
+                        {
+                            highestPriorityAnimal = animal;
+                        }
                     }
                 }
 
-                if (CircusAnimals.Count != 0 && CircusAnimals.Count <= i + 1)
-                {
-                    sortedAnimalList.Add(highestPriorityAnimal);
-                    CircusAnimals.Remove(highestPriorityAnimal);
-                    highestPriorityAnimal = null;
-                    i = -1;
-                }
+                sortedAnimalList.Add(highestPriorityAnimal);
+                CircusAnimals.Remove(highestPriorityAnimal);
+                highestPriorityAnimal = null;
             }
 
             return sortedAnimalList;

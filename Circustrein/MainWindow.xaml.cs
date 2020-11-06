@@ -30,9 +30,12 @@ namespace Circustrein
             foreach (TextBox tbx in FindVisualChildren<TextBox>(dpAnimalInput))
             {
                 string[] arrTbxTag = tbx.Tag.ToString().Split('_');
-                Sizes size = arrTbxTag[0] == Sizes.kleine.ToString() ? Sizes.kleine :
-                                arrTbxTag[0] == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
-                Types type = arrTbxTag[1] == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
+                string strSize = arrTbxTag[0];
+                string strType = arrTbxTag[1];
+
+                Sizes size = strSize == Sizes.kleine.ToString() ? Sizes.kleine :
+                             strSize == Sizes.middelgrote.ToString() ? Sizes.middelgrote : Sizes.grote;
+                Types type = strType == Types.planteter.ToString() ? Types.planteter : Types.vleeseter;
 
                 try
                 {
