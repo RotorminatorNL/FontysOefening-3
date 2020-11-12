@@ -11,7 +11,6 @@ namespace Circustrein
         public readonly int Space;
         public int UsedSpace { get; private set; }
         public string Efficiency { get; private set; }
-        public int AmountAnimals { get; private set; }
 
         public Wagon(int WagonID)
         {
@@ -19,7 +18,6 @@ namespace Circustrein
             Space = 10;
             UsedSpace = 0;
             Efficiency = "";
-            AmountAnimals = 0;
             wagonID = WagonID;
         }
 
@@ -30,7 +28,6 @@ namespace Circustrein
                 animalsInWagon.Add(animal);
                 UsedSpace += Convert.ToInt32(animal.Size);
                 Efficiency = $"{UsedSpace} / {Space}";
-                AmountAnimals++;
                 return true;
             }
             return false;

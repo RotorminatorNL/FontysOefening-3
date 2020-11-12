@@ -84,7 +84,7 @@ namespace Circustrein
             Wagon selectedWagon = (Wagon)LvWagons.SelectedItem;
             if (selectedWagon != null)
             {
-                LblAmountAnimalsInWagon.Content = selectedWagon.AmountAnimals;
+                LblAmountAnimalsInWagon.Content = selectedWagon.GetAnimalsInWagon().Count;
                 LblUsedSpace.Content = selectedWagon.Efficiency;
                 LvAnimalsInWagon.ItemsSource = selectedWagon.GetAnimalsInWagon();
             }
