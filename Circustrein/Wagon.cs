@@ -25,25 +25,13 @@ namespace Circustrein
 
         public bool AddAnimalToWagon(Animal animal)
         {
-            if(EnoughSpace(animal))
+            if (EnoughSpace(animal) && animalsInWagon[0].CompatibleWith(animal))
             {
-                bool animalIsCompatible = true;
-                foreach (Animal a in animalsInWagon)
-                {
-                    if (!a.CompatibleWith(animal))
-                    {
-                        animalIsCompatible = false;
-                    }
-                }
-
-                if (animalIsCompatible)
-                {
-                    animalsInWagon.Add(animal);
-                    UsedSpace += Convert.ToInt32(animal.Size);
-                    Efficiency = $"{UsedSpace} / {Space}";
-                    AmountAnimals++;
-                    return true;
-                }
+                animalsInWagon.Add(animal);
+                UsedSpace += Convert.ToInt32(animal.Size);
+                Efficiency = $"{UsedSpace} / {Space}";
+                AmountAnimals++;
+                return true;
             }
             return false;
         }
