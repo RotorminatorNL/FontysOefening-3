@@ -43,7 +43,7 @@
             </StackPanel>
         </Border>
         <DockPanel Margin="0,0,0,180" HorizontalAlignment="Center">
-            <Button x:Name="BtnReset" Content="Reset" FontSize="24" Height="50" Width="180" Margin="0,0,10,0"/>
+            <Button x:Name="BtnReset" Content="Reset" FontSize="24" Height="50" Width="180" Margin="0,0,10,0" Click="BtnReset_Click"/>
             <Button x:Name="BtnGeefResultaat" Content="Geef resultaat" FontSize="24" Height="50" Width="180" Margin="10,0,0,0" Click="BtnSeeResult_Click"/>
         </DockPanel>
         <Border Background="#FF9100" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Height="460" Width="550" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,20">

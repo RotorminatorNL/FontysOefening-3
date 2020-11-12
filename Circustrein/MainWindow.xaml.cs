@@ -89,5 +89,17 @@ namespace Circustrein
                 LvAnimalsInWagon.ItemsSource = selectedWagon.GetAnimalsInWagon();
             }
         }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (TextBox tbx in FindVisualChildren<TextBox>(dpAnimalInput))
+            {
+                tbx.Text = "0";
+            }
+
+            train = null;
+            LvWagons.ItemsSource = null;
+            LvAnimalsInWagon.ItemsSource = null;
+        }
     }
 }
