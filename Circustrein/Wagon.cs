@@ -11,7 +11,6 @@ namespace Circustrein
         public readonly int Space;
         public int UsedSpace { get; private set; }
         public string Efficiency { get; private set; }
-        public int AmountAnimals { get; private set; }
 
         public Wagon(int WagonID)
         {
@@ -19,31 +18,18 @@ namespace Circustrein
             Space = 10;
             UsedSpace = 0;
             Efficiency = "";
-            AmountAnimals = 0;
             wagonID = WagonID;
         }
 
         public bool AddAnimalToWagon(Animal animal)
         {
-            if(EnoughSpace(animal))
+            if (EnoughSpace(animal))
+            if (animalsInWagon.Count == 0 || animalsInWagon[0].CompatibleWith(animal))
             {
-                bool animalIsCompatible = true;
-                foreach (Animal a in animalsInWagon)
-                {
-                    if (!a.CompatibleWith(animal))
-                    {
-                        animalIsCompatible = false;
-                    }
-                }
-
-                if (animalIsCompatible)
-                {
-                    animalsInWagon.Add(animal);
-                    UsedSpace += Convert.ToInt32(animal.Size);
-                    Efficiency = $"{UsedSpace} / {Space}";
-                    AmountAnimals++;
-                    return true;
-                }
+                animalsInWagon.Add(animal);
+                UsedSpace += Convert.ToInt32(animal.Size);
+                Efficiency = $"{UsedSpace} / {Space}";
+                return true;
             }
             return false;
         }

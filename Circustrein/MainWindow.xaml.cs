@@ -84,10 +84,22 @@ namespace Circustrein
             Wagon selectedWagon = (Wagon)LvWagons.SelectedItem;
             if (selectedWagon != null)
             {
-                LblAmountAnimalsInWagon.Content = selectedWagon.AmountAnimals;
+                LblAmountAnimalsInWagon.Content = selectedWagon.GetAnimalsInWagon().Count;
                 LblUsedSpace.Content = selectedWagon.Efficiency;
                 LvAnimalsInWagon.ItemsSource = selectedWagon.GetAnimalsInWagon();
             }
+        }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (TextBox tbx in FindVisualChildren<TextBox>(dpAnimalInput))
+            {
+                tbx.Text = "0";
+            }
+
+            train = null;
+            LvWagons.ItemsSource = null;
+            LvAnimalsInWagon.ItemsSource = null;
         }
     }
 }
