@@ -12,18 +12,11 @@ namespace Circustrein.Tests
             // Arrange
             bool expected = false;
 
-            List<Animal> animals = new List<Animal>
-            {
-                new Animal(Sizes.grote, Types.vleeseter),
-                new Animal(Sizes.middelgrote, Types.vleeseter)
-            };
-
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
+            wagon.AddAnimalToWagon(new Animal(Sizes.grote, Types.vleeseter));
 
             // Act
-            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            bool actual = wagon.AddAnimalToWagon(new Animal(Sizes.middelgrote, Types.vleeseter));
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -35,41 +28,27 @@ namespace Circustrein.Tests
             // Arrange
             bool expected = false;
 
-            List<Animal> animals = new List<Animal>
-            {
-                new Animal(Sizes.grote, Types.vleeseter),
-                new Animal(Sizes.middelgrote, Types.planteter)
-            };
-
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
+            wagon.AddAnimalToWagon(new Animal(Sizes.grote, Types.vleeseter));
 
             // Act
-            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            bool actual = wagon.AddAnimalToWagon(new Animal(Sizes.middelgrote, Types.planteter));
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
-        public void AddAnimalToWagon_OneBigPlaneaterOneMediumMeateater_ShouldReturnTrue()
+        public void AddAnimalToWagon_OneBigPlanteaterOneMediumMeateater_ShouldReturnTrue()
         {
             // Arrange
             bool expected = true;
 
-            List<Animal> animals = new List<Animal>
-            {
-                new Animal(Sizes.grote, Types.planteter),
-                new Animal(Sizes.middelgrote, Types.vleeseter)
-            };
-
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
+            wagon.AddAnimalToWagon(new Animal(Sizes.grote, Types.planteter));
 
             // Act
-            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            bool actual = wagon.AddAnimalToWagon(new Animal(Sizes.middelgrote, Types.vleeseter));
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -81,18 +60,11 @@ namespace Circustrein.Tests
             // Arrange
             bool expected = true;
 
-            List<Animal> animals = new List<Animal>
-            {
-                new Animal(Sizes.grote, Types.planteter),
-                new Animal(Sizes.grote, Types.planteter)
-            };
-
             Wagon wagon = new Wagon(1);
-            wagon.AddAnimalToWagon(animals[0]);
-            animals.Remove(animals[0]);
+            wagon.AddAnimalToWagon(new Animal(Sizes.grote, Types.planteter));
 
             // Act
-            bool actual = wagon.AddAnimalToWagon(animals[0]);
+            bool actual = wagon.AddAnimalToWagon(new Animal(Sizes.grote, Types.planteter));
 
             // Assert
             Assert.AreEqual(expected, actual);
